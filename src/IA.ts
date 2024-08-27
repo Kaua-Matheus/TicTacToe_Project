@@ -1,3 +1,5 @@
+import { combinations } from "./checkWinner";
+
 export type Player = 'X' | 'O';
 export type Cell = Player | null;
 
@@ -9,16 +11,13 @@ interface IIA {
 
 export class IA implements IIA {
     board = Array(9).fill(null);
-    readonly combinations = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8],
-        [0, 3, 6], [1, 4, 7], [2, 5, 8],
-        [0, 4, 8], [2, 4, 6]
-    ];
+    readonly combinations = combinations;
 
     public nextMove(): number {
         return (
             this.checkWinningMove('O') ||
             this.checkBlockingMove() ||
+            this.checkEmptyMiddle() ||
             this.chooseRandomMove() ||
             -1
         );
@@ -52,7 +51,10 @@ export class IA implements IIA {
             const randomIndex = Math.floor(Math.random() * emptyCells.length);
             return emptyCells[randomIndex];
         }
-
         return null;
+    }
+
+    private checkEmptyMiddle(): number | null {
+        return this.board[4] === null ? 4 : null;
     }
 }
