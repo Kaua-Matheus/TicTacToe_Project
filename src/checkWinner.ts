@@ -1,4 +1,4 @@
-import { Board, Player } from "./tabuleiro";
+import { Cell, Player } from "./IA";
 
 export const combinations = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -6,7 +6,7 @@ export const combinations = [
     [0, 4, 8], [2, 4, 6]
 ];
 
-export const checkWinner = (board: Board): Player => {
+const checkWinner = (board: Cell[]): Player => {
 
     for (const [a, b, c] of combinations) {
         if (board[a] && board[a] === board[b] && board[a] === board[c]) {
@@ -16,3 +16,5 @@ export const checkWinner = (board: Board): Player => {
 
     return null;
 }
+
+export default checkWinner;
