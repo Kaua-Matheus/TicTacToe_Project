@@ -18,6 +18,7 @@ export class IA implements IIA {
             this.checkWinningMove('O') ||
             this.checkBlockingMove() ||
             this.checkEmptyMiddle() ||
+            this.checkBorders() ||
             this.chooseRandomMove() ||
             -1
         );
@@ -56,5 +57,15 @@ export class IA implements IIA {
 
     private checkEmptyMiddle(): number | null {
         return this.board[4] === null ? 4 : null;
+    }
+
+    private checkBorders(): number | null {
+        const borders = [0, 2, 6, 8];
+        for(const border of borders) {
+            if (this.board[border] === null) {
+                return border;
+            }
+        }
+        return null;
     }
 }
