@@ -21,7 +21,7 @@ export default function Home() {
           <aside className='m-3 row-auto text-yellow-600 text-lg'>{IAPoints}</aside>
           </div>
         </div>
-      <button className="p-5 bg-gray-300 text-black shadow-sm shadow-black hover:bg-black hover:text-yellow-300" onClick={() => {
+      <button className="p-5 bg-gray-300 text-black shadow-sm shadow-black hover:bg-black hover:text-yellow-600 text-lg" onClick={() => {
           setBoard(new IA())
           setWinner(null)
           setIAPoints(0),
@@ -42,9 +42,9 @@ export default function Home() {
       {winner && (
       <div className="absolute bg-white/80 p-4 rounded-lg w-full h-full flex justify-start items-center flex-col">
         <div className="mt-16 flex justify-center items-center flex-col space-y-28">
-        <p className={`text-8xl ${winner === 'Você ganhou!' ? "text-green-500" : "text-red-500"}`}>{winner}</p>
+        <p className={`text-8xl ${winner === 'Você ganhou!' ? "text-yellow-600" : "text-yellow-600"}`}>{winner}</p>
         <button 
-        className="bg-white p-6 rounded-lg"
+        className="bg-black text-yellow-600 p-6 rounded-lg"
         onClick={() => {
           setBoard(new IA())
           setWinner(null)
