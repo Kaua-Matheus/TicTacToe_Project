@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
 
-    <div className="w-full h-full flex justify-center items-center">
+    <div className="w-full h-screen flex justify-center items-center">
 
       <div className='p-2 bg-gray-300 m-10 h-40 flex content-center shadow-sm shadow-black'>
         
@@ -21,7 +21,10 @@ export default function Home() {
           <aside className='m-3 row-auto text-yellow-600 text-lg'>PONTOS {}</aside>
           </div>
         </div>
-      <button className="p-5 bg-gray-300 text-black shadow-sm shadow-black hover:bg-black hover:text-yellow-300">Restart</button>
+      <button className="p-5 bg-gray-300 text-black shadow-sm shadow-black hover:bg-black hover:text-yellow-300" onClick={() => {
+        setBoard(new IA())
+        setWinner(null)
+      }}>Restart</button>
       </div>
       <div className="grid grid-cols-3 gap-2 w-96 h-96 mt-48">
         {board.board.map((value, index) => (
