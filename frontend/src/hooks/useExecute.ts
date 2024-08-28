@@ -5,6 +5,8 @@ import { IA } from "../../../src/IA";
 export default function useExecute() {
     const [board, setBoard] = useState(new IA());
     const [winner, setWinner] = useState<string | null>(null);
+    const [playerPoints, setPlayerPoints] = useState(0);
+    const [IAPoints, setIAPoints] = useState(0);
 
     const handleClick = (index: number) => {
         if (board.board[index] !== null || winner) return;
@@ -17,6 +19,7 @@ export default function useExecute() {
         const playerWon = checkWinner(newBoard.board);
         if (playerWon === "X") {
             setWinner("Você ganhou!");
+            setPlayerPoints(playerPoints+1)
             setBoard(newBoard);
             return;
         }
@@ -29,6 +32,7 @@ export default function useExecute() {
         const IAWon = checkWinner(newBoard.board);
         if (IAWon === "O") {
             setWinner("Você perdeu!");
+            setIAPoints(IAPoints+1)
             setBoard(newBoard);
             return;
         }
@@ -45,6 +49,10 @@ export default function useExecute() {
         setBoard,
         handleClick,
         winner,
-        setWinner
+        setWinner,
+        playerPoints,
+        IAPoints,
+        setIAPoints,
+        setPlayerPoints
     }
 }

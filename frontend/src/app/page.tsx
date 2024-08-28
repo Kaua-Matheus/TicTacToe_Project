@@ -3,25 +3,30 @@ import useExecute from "@/hooks/useExecute";
 import { IA } from "../../../src/IA";
 
 export default function Home() {
-  const { board, handleClick, winner, setBoard, setWinner } = useExecute();
+  const { board, handleClick, winner, setBoard, setWinner, IAPoints, playerPoints, setIAPoints, setPlayerPoints} = useExecute();
 
   return (
 
-    <div className="w-full h-full flex justify-center items-center">
+    <div className="w-full h-screen flex justify-center items-center">
 
       <div className='p-2 bg-gray-300 m-10 h-40 flex content-center shadow-sm shadow-black'>
         
         <div className='flex'>
           <div className='bg-gray-300 border-black border w-32 text-center'>
           <aside className="m-3 row-auto">Player{}</aside>
-          <aside className='m-3 row-auto text-yellow-600 text-lg'>PONTOS {}</aside>
+          <aside className='m-3 row-auto text-yellow-600 text-lg'>{playerPoints}</aside>
           </div>
           <div className='mx-2 bg-gray-300 border-black border w-32 text-center'>
           <aside className="m-3 row-auto">Inteligência</aside>
-          <aside className='m-3 row-auto text-yellow-600 text-lg'>PONTOS {}</aside>
+          <aside className='m-3 row-auto text-yellow-600 text-lg'>{IAPoints}</aside>
           </div>
         </div>
-      <button className="p-5 bg-gray-300 text-black shadow-sm shadow-black hover:bg-black hover:text-yellow-300">Restart</button>
+      <button className="p-5 bg-gray-300 text-black shadow-sm shadow-black hover:bg-black hover:text-yellow-300" onClick={() => {
+          setBoard(new IA())
+          setWinner(null)
+          setIAPoints(0),
+          setPlayerPoints(0)
+          }}>Restart</button>
       </div>
       <div className="grid grid-cols-3 gap-2 w-96 h-96 mt-48">
         {board.board.map((value, index) => (
@@ -39,7 +44,7 @@ export default function Home() {
         <div className="mt-16 flex justify-center items-center flex-col space-y-28">
         <p className={`text-8xl ${winner === 'Você ganhou!' ? "text-green-500" : "text-red-500"}`}>{winner}</p>
         <button 
-        className="bg-zinc-900 p-6 rounded-lg"
+        className="bg-white p-6 rounded-lg"
         onClick={() => {
           setBoard(new IA())
           setWinner(null)
