@@ -1,9 +1,14 @@
 'use client';
 import useExecute from "@/hooks/useExecute";
 import { IA } from "../../../src/IA";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const { board, handleClick, winner, setBoard, setWinner, IAPoints, playerPoints, setIAPoints, setPlayerPoints} = useExecute();
+
+  useEffect(() => {
+    handleClick(0);
+  }, [])
 
   return (
 
@@ -32,7 +37,7 @@ export default function Home() {
         {board.board.map((value, index) => (
           <div
             onClick={() => handleClick(index)}
-            key={index}
+            key={index + 1}
             className="w-full h-full flex justify-center items-center bg-gray-600 text-yellow-600 text-3xl font-bold border border-black cursor-pointer shadow-md shadow-black hover:shadow-sm"
           >
             <p>{value}</p>

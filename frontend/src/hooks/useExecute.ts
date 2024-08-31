@@ -9,22 +9,23 @@ export default function useExecute() {
     const [IAPoints, setIAPoints] = useState(0);
 
     const handleClick = (index: number) => {
+
         if (board.board[index] !== null || winner) return;
 
         const newBoard = new IA();
         newBoard.board = [...board.board];
 
-        newBoard.board[index] = "X";
+            newBoard.board[index] = "X";
 
-        const playerWon = checkWinner(newBoard.board);
-        if (playerWon === "X") {
-            setWinner("Você ganhou!");
-            setPlayerPoints(playerPoints+1)
-            setBoard(newBoard);
-            return;
-        }
+            const playerWon = checkWinner(newBoard.board);
+            if (playerWon === "X") {
+                setWinner("Você ganhou!");
+                setPlayerPoints(playerPoints + 1)
+                setBoard(newBoard);
+                return;
+            }
 
-        const IAPlay = newBoard.nextMove();
+        const IAPlay = Number(newBoard.nextMove());
         if (IAPlay !== -1) {
             newBoard.board[IAPlay] = "O";
         }
@@ -32,7 +33,7 @@ export default function useExecute() {
         const IAWon = checkWinner(newBoard.board);
         if (IAWon === "O") {
             setWinner("Você perdeu!");
-            setIAPoints(IAPoints+1)
+            setIAPoints(IAPoints + 1)
             setBoard(newBoard);
             return;
         }
